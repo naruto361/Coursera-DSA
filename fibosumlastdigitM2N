@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    long long int m,n;
+    cin>>m>>n;
+    long long int f[60];
+    f[0]=0;
+    f[1]=1;
+    long long int sum[60];
+    sum[0]=0;sum[1]=1;
+    for(int i=2;i<60;i++)
+    {   
+        f[i]=(f[i-1]%10 + f[i-2]%10)%10;
+        sum[i]=(sum[i-1]%10 + f[i]%10 )%10;
+    }    
+    long long int j=n/60;
+    int k=n%60;
+    long long int nn=(j%10 * sum[59]%10)%10 + sum[k];
+    
+    long long int i=m/60;
+    int x=m%60;
+    long long int mm=(i%10 * sum[59]%10)%10 + sum[x];
+    
+    int ans=(nn-mm)%10;
+    ans=(ans%10 + f[m%60]%10)%10;
+    cout<<ans;
+    
+   
+}
+    
